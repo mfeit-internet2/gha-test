@@ -14,7 +14,7 @@ jobs:
   setup-containers:
     strategy:
       matrix:
-        os: [ 'el9', 'd11' ]
+        os: [ 'el9', 'd10' ]
 
     runs-on: ubuntu-latest
 
@@ -27,10 +27,10 @@ jobs:
     steps:
       - run: env | fgrep BUILD
       - run: uname -s
-#      - uses: actions/checkout@v4
-#      - run: make
-#      - uses:  actions/upload-artifact@v3
-#        with:
-#          name: ${{ github.event.repository.name }}-${{ matrix.os }}
-#          path: unibuild-repo
-#          retention-days: 5
+      - uses: actions/checkout@v4
+      - run: make
+      - uses:  actions/upload-artifact@v3
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}
+          path: unibuild-repo
+          retention-days: 5
