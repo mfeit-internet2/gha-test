@@ -7,8 +7,6 @@ on:
   push:
     branches: [ 'main' ]
 
-environment:
-  - NO_AUTO_BUILD=1
   
 jobs:
         
@@ -21,6 +19,8 @@ jobs:
 
     container:
       image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
+      environment:
+        - NO_AUTO_BUILD=1
 
     steps:
       - run: env | fgrep BUILD
