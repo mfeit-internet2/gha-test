@@ -7,6 +7,9 @@ on:
   push:
     branches: [ 'main' ]
 
+environment:
+  - NO_AUTO_BUILD=1
+  
 jobs:
         
   setup-containers:
@@ -20,10 +23,11 @@ jobs:
       image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: make
-      - uses:  actions/upload-artifact@v3
-        with:
-          name: ${{ github.event.repository.name }}-${{ matrix.os }}
-          path: unibuild-repo
-          retention-days: 5
+      - run: env | fgrep BUILD
+#      - uses: actions/checkout@v4
+#      - run: make
+#      - uses:  actions/upload-artifact@v3
+#        with:
+#          name: ${{ github.event.repository.name }}-${{ matrix.os }}
+#          path: unibuild-repo
+#          retention-days: 5
