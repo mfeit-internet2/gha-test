@@ -3,34 +3,45 @@
 #
 
 name: test
+
 on:
   push:
     branches: [ 'main' ]
 
-  
 jobs:
-
        
-  setup-containers:
+  build:
+
     strategy:
       matrix:
         os: [ 'el9', 'd10' ]
 
+    # See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
     runs-on: ubuntu-latest
 
     container:
       image: ghcr.io/perfsonar/docker-oneshot-builder/${{ matrix.os }}:latest
 
     env:
+      # Tell the one-shot builder not to do its build automatically.
+      # This effectively makes it just a container with systemd, which
+      # should really be a separate thing.
       BUILD_NO_AUTO: 1
 
     steps:
-      - run: env | fgrep BUILD
-      - run: uname -s
+
+      # Grab the repository
       - uses: actions/checkout@v4
+
+      # Build it
       - run: make
-      - uses:  actions/upload-artifact@v3
+
+      # Stash the artifacts
+      - uses: actions/upload-artifact@v3
         with:
+          # Name the artifact uniquely
           name: ${{ github.event.repository.name }}-${{ matrix.os }}
+          # Where the finished product lives after the build
           path: unibuild-repo
+          # Don't keep these for long.  This is just a test.
           retention-days: 5
