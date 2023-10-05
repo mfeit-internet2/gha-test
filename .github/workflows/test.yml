@@ -24,6 +24,6 @@ jobs:
       - run: make
       - uses:  actions/upload-artifact@v3
         with:
-          name: dist-without-markdown
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}
           path: unibuild-repo
           retention-days: 5
