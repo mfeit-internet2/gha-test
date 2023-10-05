@@ -22,3 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: make
+      - uses:  actions/upload-artifact@v3
+        with:
+          name: dist-without-markdown
+          path: unibuild-repo
+          retention-days: 5
