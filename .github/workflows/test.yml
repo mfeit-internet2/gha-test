@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
+      image: ghcr.io/perfsonar/docker-oneshot-builder/${{ matrix.os }}:latest
 
     env:
-      DOSB_NO_AUTO_BUILD: 1
+      BUILD_NO_AUTO: 1
 
     steps:
       - run: env | fgrep BUILD
