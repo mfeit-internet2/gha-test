@@ -1,15 +1,21 @@
 #
-# Build a pathologically-simple product
+# Makefile for Unibuild Hello World
+#
+# Note that this requires an installed, functioning Unibuild.
 #
 
-PRODUCT := product
+ifdef RELEASE
+UNIBUILD_OPTS += --release
+endif
 
-default: $(PRODUCT)
+default: build
 
-$(PRODUCT):
-	mkdir -p $@
-	touch $@/file
-TO_CLEAN += $(PRODUCT)
+REPO=unibuild-repo
+TO_CLEAN += $(REPO)
+
+build:
+	unibuild $(UNIBUILD_OPTS)
 
 clean:
+	unibuild $(UNIBUILD_OPTS) make clean
 	rm -rf $(TO_CLEAN) *~
