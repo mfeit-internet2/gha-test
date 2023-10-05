@@ -1,0 +1,20 @@
+
+name: test
+on:
+  push :
+    branches
+      - main
+
+jobs:
+        
+  setup-containers:
+    strategy:
+      matrix:
+        os: [ 'el8' ]
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/perfsonar/docker-oneshot-builder/${{ matrix.os }}:latest
+      volumes:
+        - .:/build
