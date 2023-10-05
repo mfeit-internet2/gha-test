@@ -22,7 +22,7 @@ jobs:
       image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
 
     env:
-      - NO_AUTO_BUILD=1
+      NO_AUTO_BUILD: 1
 
     steps:
       - run: env | fgrep BUILD
