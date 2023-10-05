@@ -17,3 +17,7 @@ jobs:
       image: ghcr.io/perfsonar/docker-oneshot-builder/${{ matrix.os }}:latest
       volumes:
         - .:/build
+
+      steps:
+        - name: checkout
+          uses: actions/checkout@v4
