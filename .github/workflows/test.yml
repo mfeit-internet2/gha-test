@@ -1,3 +1,6 @@
+#
+# Test Workflow for GitHub Actions
+#
 
 name: test
 on:
@@ -9,7 +12,7 @@ jobs:
   setup-containers:
     strategy:
       matrix:
-        os: [ 'el9' ]
+        os: [ 'el8', 'el9' ]
 
     runs-on: ubuntu-latest
 
