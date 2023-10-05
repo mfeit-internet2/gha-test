@@ -22,10 +22,11 @@ jobs:
       image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
 
     env:
-      NO_AUTO_BUILD: 1
+      DOSB_NO_AUTO_BUILD: 1
 
     steps:
       - run: env | fgrep BUILD
+      - run: uname -s
 #      - uses: actions/checkout@v4
 #      - run: make
 #      - uses:  actions/upload-artifact@v3
