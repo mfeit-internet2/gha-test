@@ -11,13 +11,11 @@ jobs:
       matrix:
         os: [ 'el9' ]
 
+    # TODO: Try [ 'linux', 'x64' ] instead.  Shouldn't matter for containers.
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/perfsonar/docker-oneshot-builder/${{ matrix.os }}:latest
-      volumes:
-        - .:/build
+      image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
 
-      steps:
-        - name: checkout
-          uses: actions/checkout@v4
+    steps:
+      - run: echo Hello, world
