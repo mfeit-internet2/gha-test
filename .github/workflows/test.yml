@@ -1,16 +1,15 @@
 
 name: test
 on:
-  push :
-    branches
-      - main
+  push:
+    branches: [ 'main' ]
 
 jobs:
         
   setup-containers:
     strategy:
       matrix:
-        os: [ 'el8' ]
+        os: [ 'el9' ]
 
     runs-on: ubuntu-latest
 
