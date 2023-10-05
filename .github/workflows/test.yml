@@ -9,7 +9,8 @@ on:
 
   
 jobs:
-        
+
+       
   setup-containers:
     strategy:
       matrix:
@@ -19,8 +20,9 @@ jobs:
 
     container:
       image: ghcr.io/perfsonar/unibuild/${{ matrix.os }}:latest
-      environment:
-        - NO_AUTO_BUILD=1
+
+    env:
+      - NO_AUTO_BUILD=1
 
     steps:
       - run: env | fgrep BUILD
